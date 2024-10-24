@@ -12,7 +12,7 @@ get("/square/:type") do
   if type == "new"
     erb(:square)
   elsif type == "results"
-      @number = params.fetch("number").to_i
+      @number = params.fetch("number").to_f
       @square = @number * @number
       @square = @square.to_f
     erb(:square_results)
@@ -25,7 +25,7 @@ get("/square_root/:type") do
   if type == "new"
     erb(:square_root)
   elsif type == "results"
-    @user_number = params.fetch("user_number").to_i
+    @user_number = params.fetch("user_number").to_f
     @square_root = Math.sqrt(@user_number)
     erb(:square_root_results)
   end
@@ -37,9 +37,9 @@ get("/payment/:type") do
   if type == "new"
     erb(:payment)
   elsif type == "results"
-    @user_apr = 5.42
-    @user_years = 2
-    @user_pv = 100
+    @user_apr = params.fetch("user_apr").to_f
+    @user_years = params.fetch("user_years").to_i
+    @user_pv = params.fetch("user_pv").to_f
 
     @r = @user_apr / (100 * 12)
     @n = @user_years * 12
